@@ -22,7 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/resources/**", "/build/**", "/vendors/**", "/login", "/api/**").permitAll()
+                .antMatchers("/resources/**", "/build/**", "/vendors/**", "/login", "/api/**", "/files/**").permitAll()
+                .antMatchers("/404").permitAll()
+                .antMatchers("/403").permitAll()
                 .antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
                 .and()
@@ -33,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .exceptionHandling().accessDeniedPage("/403")
                 .and()
-            .csrf();
+            .csrf().disable();
     }
 
     @Autowired

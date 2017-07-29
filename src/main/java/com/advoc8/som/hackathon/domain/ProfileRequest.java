@@ -7,13 +7,9 @@ public class ProfileRequest {
 	private String picture;
 	private String detail;
 	
-	
-	
-	
 	public ProfileRequest() {
 		super();
 	}
-	
 	
 	public ProfileRequest(String name, boolean isExist, String picture, String detail) {
 		super();
@@ -22,9 +18,6 @@ public class ProfileRequest {
 		this.picture = picture;
 		this.detail = detail;
 	}
-
-
-
 
 	public String getName() {
 		return name;
