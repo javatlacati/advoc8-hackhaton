@@ -19,5 +19,10 @@ public class ApiController {
     public Dummy greeting(@RequestParam(value="name", defaultValue="World") String name) {
         return new Dummy(counter.incrementAndGet(), String.format(template, name));
     }
+    
+    @RequestMapping("test")
+    public Dummy reportTrafficking(@RequestParam(value="name", defaultValue="World") String name) {
+        return new Dummy(counter.incrementAndGet(), String.format(template, name));
+    }
 
 }
