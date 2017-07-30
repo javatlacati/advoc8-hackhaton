@@ -1,5 +1,12 @@
 package com.advoc8.som.hackathon.configuration;
 
+<<<<<<< HEAD
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class Advoc8Configuration {
+	
+=======
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -27,4 +34,5 @@ public class Advoc8Configuration {
 		return builder.build();
 	}
 	
+>>>>>>> 67546b4d72802dc1fc216161fd84cacfe2061f50
 }

@@ -22,6 +22,9 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+<<<<<<< HEAD
+=======
 
 
 upload-dir/
+>>>>>>> 67546b4d72802dc1fc216161fd84cacfe2061f50

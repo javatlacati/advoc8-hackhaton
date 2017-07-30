@@ -22,9 +22,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+<<<<<<< HEAD
+                .antMatchers("/resources/**", "/build/**", "/vendors/**", "/login").permitAll()
+                .antMatchers("/api/**").permitAll()
+=======
                 .antMatchers("/resources/**", "/build/**", "/vendors/**", "/login", "/api/**", "/files/**").permitAll()
                 .antMatchers("/404").permitAll()
                 .antMatchers("/403").permitAll()
+>>>>>>> 67546b4d72802dc1fc216161fd84cacfe2061f50
                 .antMatchers("/hello").access("hasRole('ROLE_ADMIN')")
                 .anyRequest().authenticated()
                 .and()
@@ -35,7 +40,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .exceptionHandling().accessDeniedPage("/403")
                 .and()
+<<<<<<< HEAD
+            .csrf();
+=======
             .csrf().disable();
+>>>>>>> 67546b4d72802dc1fc216161fd84cacfe2061f50
     }
 
     @Autowired
