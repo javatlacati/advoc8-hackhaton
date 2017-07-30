@@ -60,7 +60,9 @@ public class ImageRecognition {
     	
     	Result1 ret = restTemplate.postForObject(new URI(Constants.KAIRUS_URL_RECOGNIZE), entity, Result1.class);
     	
-    	logger.info("Return : " + ret.getImages().get(0).getTransaction().getStatus());
+    	//logger.info("Return : " + (ret.getImages()==null));
+    	
+    	//logger.info("Return : " + ret.getImages().get(0).getTransaction().getStatus());
     	
 		return ret;
 	}

@@ -53,6 +53,11 @@ public class ApiController {
 	public ResponseEntity<Response1> getProfile(@RequestParam("appId") String appId, @RequestParam("file") MultipartFile file) throws RestClientException, URISyntaxException, IOException {
     	
     	Result1 ret = imageRecognition.doValidate(file); //Call API recognize
+    	
+    	if(ret.getImages()==null){
+    		return new ResponseEntity<Response1>(new Response1(null, 0), HttpStatus.NOT_FOUND);
+    		
+    	}
     	    	
     	if (ret.getImages().get(0).getTransaction().getStatus().equals("success")){
     		//TODO: Get object_id from response - return rating from DB
@@ -74,7 +79,7 @@ public class ApiController {
     	}
 
     	//TODO: Return not found
-		return new ResponseEntity<Response1>(new Response1(null, 0), HttpStatus.NOT_FOUND);
+		return new ResponseEntity<Response1>(new Response1(null, 0), HttpStatus.BAD_REQUEST);
 	}
     
     
