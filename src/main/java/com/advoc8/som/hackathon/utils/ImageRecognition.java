@@ -21,6 +21,7 @@ import com.advoc8.som.hackathon.Constants;
 import com.advoc8.som.hackathon.domain.EnrollRequest;
 import com.advoc8.som.hackathon.domain.RecognizeRequest;
 import com.advoc8.som.hackathon.domain.Result1;
+import com.advoc8.som.hackathon.domain.Result2;
 import com.advoc8.som.hackathon.storage.StorageService;
 
 @Component
@@ -67,7 +68,7 @@ public class ImageRecognition {
 	/*
 	 * Add new beggar in our record
 	 */
-	public String doAddBeggar(MultipartFile file, String subjectId) throws RestClientException, URISyntaxException, IOException{
+	public Result2 doAddBeggar(MultipartFile file, String subjectId) throws RestClientException, URISyntaxException, IOException{
 		
 		byte[] encoded = Base64.encode(file.getBytes());
     	
@@ -84,7 +85,7 @@ public class ImageRecognition {
 
     	HttpEntity<EnrollRequest> entity = new HttpEntity<EnrollRequest>(er, headers);
     	
-    	String ret = restTemplate.postForObject(new URI(Constants.KAIRUS_URL_ENROLL), entity, String.class);
+    	Result2 ret = restTemplate.postForObject(new URI(Constants.KAIRUS_URL_ENROLL), entity, Result2.class);
     	
     	logger.info("Return : " + ret);
 

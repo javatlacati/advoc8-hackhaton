@@ -24,6 +24,7 @@ import com.advoc8.som.hackathon.domain.Beggar;
 import com.advoc8.som.hackathon.domain.Dummy;
 import com.advoc8.som.hackathon.domain.Response1;
 import com.advoc8.som.hackathon.domain.Result1;
+import com.advoc8.som.hackathon.domain.Result2;
 import com.advoc8.som.hackathon.repository.BeggarRepository;
 import com.advoc8.som.hackathon.utils.ImageRecognition;
 
@@ -90,15 +91,19 @@ public class ApiController {
     	logger.info("latitude : {} ", latitude);
     	logger.info("rating : {} ", rating);
     	
-    	String ret = imageRecognition.doAddBeggar(file, subjectId); //Call API enroll
+    	Result2 ret = imageRecognition.doAddBeggar(file, subjectId); //Call API enroll
     	
-    	logger.info(ret);
+    	int age = ret.getImages().get(0).getAttributes().getAge();
     	
-    	Beggar b = new Beggar(appId, subjectId, detail, category, rating);
+    	String gender = ret.getImages().get(0).getAttributes().getGender().getType();
+    	
+    	logger.info("Age : " + ret.getImages().get(0).getAttributes().getAge());
+    	
+    	Beggar b = new Beggar(appId, subjectId, detail, category, rating, gender, age, true);
     	
     	beggarRepository.save(b);
     	
-    	if (ret.contains("\"status\":\"success\"")){
+    	if (ret.getImages().get(0).getTransaction().getStatus().equals("success")){
     		return new ResponseEntity<String>("OK", HttpStatus.OK);
     	}
     	    	
@@ -110,7 +115,7 @@ public class ApiController {
 	@ResponseBody
 	public ResponseEntity<String> setTraffickingLevel(@RequestParam("appId") String appId, @RequestParam("objectId")String subjectId, @RequestParam("rating")int rating) {
     	
-    	Beggar b = new Beggar(appId, subjectId, "N/A", "Trafficking for Begging", rating);
+    	Beggar b = new Beggar(appId, subjectId, "N/A", "Trafficking for Begging", rating, "N/A", 0, false);
     	
     	beggarRepository.save(b);
 
